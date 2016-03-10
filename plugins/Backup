@@ -23,7 +23,6 @@ local function check_member_autorealm(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_chat = 'no',
 		  lock_media = 'no',
 		  lock_english = 'no',
 		  lock_arabic = 'no',
@@ -64,7 +63,6 @@ local function check_member_realm_add(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_chat = 'no',
 		  lock_media = 'no',
 		  lock_english = 'no',
 		  lock_arabic = 'no',
@@ -107,7 +105,6 @@ function check_member_group(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_chat = 'no',
 		  lock_media = 'no',
 		  lock_english = 'no',
 		  lock_arabic = 'no',
@@ -150,7 +147,6 @@ local function check_member_modadd(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
-		  lock_chat = 'no',
 		  lock_media = 'no',
 		  lock_english = 'no',
 		  lock_arabic = 'no',
@@ -267,10 +263,6 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['lock_badw'] then
     	lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
    	end
-   	local lock_chat = "no"
-    if data[tostring(msg.to.id)]['settings']['lock_chat'] then
-    	lock_chat = data[tostring(msg.to.id)]['settings']['lock_chat']
-   	end
     local lock_english = "no"
     if data[tostring(msg.to.id)]['settings']['lock_english'] then
     	lock_username = data[tostring(msg.to.id)]['settings']['lock_english']
@@ -284,7 +276,7 @@ local function show_group_settingsmod(msg, data, target)
     	welcome = data[tostring(msg.to.id)]['settings']['welcome']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات گروه:\n⚙⚙⚙⚙⚙⚙\n\n●●● قفل نام گروه : "..settings.lock_name.."\n●●● قفل عکس گروه : "..settings.lock_photo.."\n●●● قفل اعضا : "..settings.lock_member.."\n●●● ممنوعیت ارسال لینک : "..lock_link.."\n●●● حساسیت اسپم : "..NUM_MSG_MAX.."\n●●● قفل ربات ها : "..bots_protection.."\n●●●قفل تگ : "..tag.."\n●●● قفل اینگلیسی :"..lock_english.."\n●●● قفل فحش : "..lock_badw.."\n●●● قفل رسانه : "..lock_media.."\n●●● قفل چت : "..lock_chat.."\n\n—---------------------------\n●TeleAgent Bot V1.5●\n"
+  local text = "تنظیمات گروه:\n⚙⚙⚙⚙⚙⚙\n\n⭕️قفل نام گروه : "..settings.lock_name.."\n⭕️قفل عکس گروه : "..settings.lock_photo.."\n⭕️قفل اعضا : "..settings.lock_member.."\n⭕️ممنوعیت ارسال لینک : "..lock_link.."\n⭕️حساسیت اسپم : "..NUM_MSG_MAX.."\n⭕️قفل ربات ها : "..bots_protection.."\n⭕️قفل تگ : "..tag.."\n⭕️قفل اینگلیسی :"..lock_english.."\n⭕️قفل فحش : "..lock_badw.."\n⭕️قفل رسانه : "..lock_media.."\n\n—------------------------------—-\n⭕️TeleAgent Bot V1.5⭕️\n"
   return text
 end
 
@@ -418,34 +410,6 @@ local function unlock_group_badw(msg, data, target)
   end
 end
 
-local function lock_group_chat(msg, data, target)
-  if not is_momod(msg) then
-    return "فقط مدیران❗️"
-  end
-  local group_chat_lock = data[tostring(target)]['settings']['lock_chat']
-  if group_chat_lock == 'yes' then
-    return 'چت کردن از قبل قفل است 🔒'
-  else
-    data[tostring(target)]['settings']['lock_chat'] = 'yes'
-    save_data(_config.moderation.data, data)
-    return 'چت کردن قفل شد🔒'
-  end
-end
-
-local function unlock_group_chat(msg, data, target)
-  if not is_momod(msg) then
-    return "فقط مدیران❗️"
-  end
-  local group_chat_lock = data[tostring(target)]['settings']['lock_chat']
-  if group_chat_lock == 'no' then
-    return 'چت کردن از قبل آزاد است'
-  else
-    data[tostring(target)]['settings']['lock_chat'] = 'no'
-    save_data(_config.moderation.data, data)
-    return 'چت کردن آزاد شد🔓'
-  end
-end
-
 local function lock_group_media(msg, data, target)
   if not is_momod(msg) then
     return "فقط مدیران❗️"
@@ -462,13 +426,13 @@ end
 
 local function unlock_group_media(msg, data, target)
   if not is_momod(msg) then
-    return "فقط مدیران❗️"
+    return "فقط مدیران"
   end
-  local group_media_lock = data[tostring(target)]['settings']['lock_media']
+  local group_media_lock = data[tostring(target)]['settings']['media']
   if group_media_lock == 'no' then
     return 'ارسال رسانه از قبل آزاد است🔓'
   else
-    data[tostring(target)]['settings']['lock_media'] = 'no'
+    data[tostring(target)]['settings']['media'] = 'no'
     save_data(_config.moderation.data, data)
     return 'ارسال رسانه آزاد شد✅🔓'
   end
@@ -1248,10 +1212,6 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked badw🔒 ")
         return lock_group_badw(msg, data, target)
       end
-      if matches[2] == 'چت' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked chat🔒 ")
-        return lock_group_chat(msg, data, target)
-      end
       if matches[2] == 'اینگلیسی' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked english🔒 ")
         return lock_group_english(msg, data, target)
@@ -1283,7 +1243,7 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked flood ")
         return unlock_group_floodmod(msg, data, target)
       end
-      if matches[2] == 'ربات ها' then
+      if matches[2] == 'ربات  ها' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked bots ")
         return unlock_group_bots(msg, data, target)
       end
@@ -1299,16 +1259,12 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked badw🔓 ")
         return unlock_group_badw(msg, data, target)
       end
-      if matches[2] == 'چت' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked chat🔓 ")
-        return unlock_group_chat(msg, data, target)
-      end
       if matches[2] == 'اینگلیسی' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked english🔓 ")
         return unlock_group_english(msg, data, target)
       end
       if matches[2] == 'رسانه' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked media🔓 ")
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked media ")
         return unlock_group_media(msg, data, target)
       end
       if matches[2] == 'خروج' then

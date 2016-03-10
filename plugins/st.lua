@@ -28,7 +28,7 @@ local function chat_stats(chat_id)
         return a.msgs > b.msgs
       end
     end)
-  local text = 'کاربران داخل این گروه: \n'
+  local text = 'users in this chat \n'
   for k,user in pairs(users_info) do
     text = text..user.name..' = '..user.msgs..'\n'
   end
@@ -72,7 +72,6 @@ local function bot_stats()
   local redis_scan = [[
     local cursor = '0'
     local count = 0
-
     repeat
       local r = redis.call("SCAN", cursor, "MATCH", KEYS[1])
       cursor = r[1]
@@ -91,25 +90,25 @@ local function bot_stats()
   return text
 end
 local function run(msg, matches)
-  if matches[1]:lower() == 'sbss' then -- Put everything you like :)
+  if matches[1]:lower() == 'creedbot' then -- Put everything you like :)
     local about = _config.about_text
     local name = user_print_name(msg.from)
-    savelog(msg.to.id, name.." ["..msg.from.id.."] used /sbss ")
+    savelog(msg.to.id, name.." ["..msg.from.id.."] used /creedbot ")
     return about
   end 
-  if matches[1]:lower() == "لیست امار" then
+  if matches[1]:lower() == "statslist" then
     if not is_momod(msg) then
-      return "فقط برای مدیران !"
+      return "For mods only !"
     end
     local chat_id = msg.to.id
     local name = user_print_name(msg.from)
     savelog(msg.to.id, name.." ["..msg.from.id.."] requested group stats ")
     return chat_stats2(chat_id)
   end
-  if matches[1]:lower() == "آمار" then
+  if matches[1]:lower() == "stats" then
     if not matches[2] then
       if not is_momod(msg) then
-        return "فقط برای مدیران !"
+        return "For mods only !"
       end
       if msg.to.type == 'chat' then
         local chat_id = msg.to.id
@@ -120,16 +119,16 @@ local function run(msg, matches)
         return
       end
     end
-    if matches[2] == "sbss" then -- Put everything you like :)
+    if matches[2] == "creedbot" then -- Put everything you like :)
       if not is_admin(msg) then
-        return "فقط برای ادمین ها !"
+        return "For admins only !"
       else
         return bot_stats()
       end
     end
-    if matches[2] == "گروه" then
+    if matches[2] == "group" then
       if not is_admin(msg) then
-        return "فقط برای ادمین ها !"
+        return "For admins only !"
       else
         return chat_stats(matches[3])
       end
@@ -138,11 +137,11 @@ local function run(msg, matches)
 end
 return {
   patterns = {
-    "^(آمار)$",
-    "^(لیست آمار)$",
-    "^(امار) (گروه) (%d+)",
-    "^(امار) (sbss)",-- Put everything you like :)
-		"^[!/@#$%^&*()_+]([Ss]bss)"-- Put everything you like :)
+    "^[!/]([Ss]tats)$",
+    "^[!/]([Ss]tatslist)$",
+    "^[!/]([Ss]tats) (group) (%d+)",
+    "^[!/]([Ss]tats) (TeleAgent)",-- Put everything you like :)
+		"^[!/](TeleAgent)"-- Put everything you like :)
     }, 
   run = run
 }
