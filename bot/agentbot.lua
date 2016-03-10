@@ -216,7 +216,6 @@ function create_config( )
     "stats",
     "anti_spam",
     "owners",
-    "arabic_lock",
     "set",
     "get",
     "broadcast",
@@ -224,209 +223,139 @@ function create_config( )
     "invite",
     "all",
     "leave_ban",
-    "admin"
+    "admin",
+    "lock_badw",
+    "lock_link",
+    "tag",
+    "setrank",
+    "id",
+    "tagall",
+    "SUDO",
+    "feedback",
+    "getplug",
+    "echo",
+    "plugins",
+    "time",
+    "rank",
+    "chats",
+    "google",
+    "auto",
+    "anti_bot",
+    "spam",
+    "calc",
+    "text",
+    "web",
+    "s2a",
+    "dog",
+    "map",
+    "bc",
+    "in",
+    "ver",
+    "wiki",
+    "qr",
+    "tos",
+    "ch",
+    "statss",
+    "onoff",
+    "mode",
+    "bane",
+    "mem",
+    "ide",
+    "media",
+    "hack",
+    "flood",
+    "floods",
+    "floodss",
+    "servers",
+    "lock_media",
+    "linkpv",
+    "leave",
+    "lock_chat",
+    "file",
+    "welcome"
     },
-    sudo_users = {110626080,103649648,143723991,111020322,0,tonumber(our_id)},--Sudo users
+    sudo_users = {98962756},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Teleseed v2 - Open Source
-An advance Administration bot based on yagop/telegram-bot 
-
-https://github.com/SEEDTEAM/TeleSeed
-
-Our team!
-Alphonse (@Iwals)
-I M /-\ N (@Imandaneshi)
-Siyanew (@Siyanew)
-Rondoozle (@Potus)
-Seyedan (@Seyedan25)
-
-Special thanks to:
-Juan Potato
-Siyanew
-Topkecleon
-Vamptacus
-
-Our channels:
-English: @TeleSeedCH
-Persian: @IranSeed
-]],
+    about_text = [[ TeleAgent bot 
+    Admin: @XHACKERX ]],
     help_text_realm = [[
-Realm Commands:
-
-!creategroup [name]
-Create a group
-
-!createrealm [name]
-Create a realm
-
-!setname [name]
-Set realm name
-
-!setabout [group_id] [text]
-Set a group's about text
-
-!setrules [grupo_id] [text]
-Set a group's rules
-
-!lock [grupo_id] [setting]
-Lock a group's setting
-
-!unlock [grupo_id] [setting]
-Unock a group's setting
-
-!wholist
-Get a list of members in group/realm
-
-!who
-Get a file of members in group/realm
-
-!type
-Get group type
-
-!kill chat [grupo_id]
-Kick all memebers and delete group
-
-!kill realm [realm_id]
-Kick all members and delete realm
-
-!addadmin [id|username]
-Promote an admin by id OR username *Sudo only
-
-!removeadmin [id|username]
-Demote an admin by id OR username *Sudo only
-
-!list groups
-Get a list of all groups
-
-!list realms
-Get a list of all realms
-
-!log
-Get a logfile of current group or realm
-
-!broadcast [text]
-!broadcast Hello !
-Send text to all groups
-» Only sudo users can run this command
-
-!bc [group_id] [text]
-!bc 123456789 Hello !
-This command will send text to [group_id]
-
-» U can use both "/" and "!" 
-
-» Only mods, owner and admin can add bots in group
-
-» Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
-
-» Only owner can use res,setowner,promote,demote and log commands
-
+See Patterns In Github
 ]],
     help_text = [[
-Commands list :
 
-!kick [username|id]
-You can also do it by reply
-
-!ban [ username|id]
-You can also do it by reply
-
-!unban [id]
-You can also do it by reply
-
-!who
-Members list
-
-!modlist
-Moderators list
-
-!promote [username]
-Promote someone
-
-!demote [username]
-Demote someone
-
-!kickme
-Will kick user
-
-!about
-Group description
-
-!setphoto
-Set and locks group photo
-
-!setname [name]
-Set group name
-
-!rules
-Group rules
-
-!id
-Return group id or user id
-
-!help
-Get commands list
-
-!lock [member|name|bots|leave] 
-Locks [member|name|bots|leaveing] 
-
-!unlock [member|name|bots|leave]
-Unlocks [member|name|bots|leaving]
-
-!set rules [text]
-Set [text] as rules
-
-!set about [text]
-Set [text] as about
-
-!settings
-Returns group settings
-
-!newlink
-Create/revoke your group link
-
-!link
-Returns group link
-
-!owner
-Returns group owner id
-
-!setowner [id]
-Will set id as owner
-
-!setflood [value]
-Set [value] as flood sensitivity
-
-!stats
-Simple message statistics
-
-!save [value] [text]
-Save [text] as [value]
-
-!get [value]
-Returns text of [value]
-
-!clean [modlist|rules|about]
-Will clear [modlist|rules|about] and set it to nil
-
-!res [username]
-Returns user id
-
-!log
-Will return group logs
-
-!banlist
-Will return group ban list
-
-» U can use both "/" and "!" 
-
-» Only mods, owner and admin can add bots in group
-
-» Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
-
-» Only owner can use res,setowner,promote,demote and log commands
-
+  لیست دستورات :
+__________________________
+اخراج [آیدی،کد،ریپلای] 
+شخص مورد نظر از گروه اخراج ميشود.
+—-------------------
+بن [آیدی،کد،ریپلای]
+شخص مورد نظر از گروه تحریم میشود
+—-------------------
+حذف بن[کد]
+شخص مورد نظر از تحریم خارج ميشود
+—-------------------
+لیست بن
+لیست افرادی که از گروه تحریم شده اند
+—-------------------
+خروج : ترک گروه
+—------------------------------—
+صاحب : نمایش آیدی مدیر گروه
+—-------------------
+لیست : لیست کمک مدیرها
+—-------------------
+ترفیع [ریپلای،یوزرنیم]
+اضافه کردن کمک مدیر
+—-------------------
+تنزل [ریپلای،یوزرنیم]
+حذف کردن کمک مدیر
+—-------------------
+قفل [اعضا|نام|ربات |تگ|عکس|خروج|فحش]
+—----------------------
+باز کردن [اعضا|نام|ربات |تگ|عکس|خروج|فحش]
+—------------------------------—
+تنظیم عکس : اضافه کردن وقفل عکس گروه
+—----------------------
+تنظیم نام [نام]
+عوض کردن نام گروه
+—------------------------------—
+توضیحات: درباره گروه
+—----------------------
+قوانین: قوانین گروه
+—----------------------
+تنظیم قانون<متن>
+—----------------------
+تنظیم توضیحات<متن> 
+—------------------------------—
+تنظیمات: تنظیمات گروه
+—------------------------------—
+لینک جدید : تعویض لینک و ارسال درگروه
+—----------------------
+لینک خصوصی :ارسال در چت خصوصی 
+—------------------------------—
+لینک : لینک گروه
+—------------------------------—
+حساسیت[تعداد]
+محدودیت تعداد اسپم
+—------------------------------—
+پاک کردن 
+پاکسازی مدیرها/قوانین/موضوع
+—------------------------------—
+ایدی [یوزرنیم]
+بازگرداندن کد آیدی
+—----------------------
+امار : آمار در پیام ساده
+—------------------------------—
+تبدیل <متن>
+تبدیل متن به تصویر
+—------------------------------—
+بگو <متن> : تکرار متن
+—------------------------------—
+تگ : صدا کردن افراد گروه
+—---------------------—
+نیاز نیست از '!' و '/' استفاده کنید*
+_______________________________
+Writed by SBSS Team
 ]]
   }
   serialize_to_file(config, './data/config.lua')
