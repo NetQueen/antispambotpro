@@ -272,7 +272,13 @@ function create_config( )
     "leave",
     "lock_chat",
     "file",
-    "welcome"
+    "filter",
+    "weather",
+    "music",
+    "fil",
+    "welcome",
+    "lea",
+    "voice"
     },
     sudo_users = {98962756},--Sudo users
     disabled_channels = {},
