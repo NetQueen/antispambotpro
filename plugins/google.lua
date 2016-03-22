@@ -18,9 +18,9 @@ local function googlethat(query)
 end
 
 local function stringlinks(results)
-  local stringresults="Search in Google:\n______________________________\n"
+  local stringresults=""
   for key,val in ipairs(results) do
-    stringresults=stringresults..val[1].." - "..val[2].."\n"
+    stringresults=stringresults..val[1].." \n "..val[2].."\n----------------------\n"
   end
   return stringresults
 end
@@ -31,11 +31,48 @@ local function run(msg, matches)
 end
 
 return {
-  description = "Searche in Google",
-  usage = "/src (item) : google search",
+  description = "Searches Google and send results",
+  usage = "!google [terms]: Searches Google and send results",
   patterns = {
     "^گوگل (.*)$",
-    "^%.گوگل (.*)$"
+    "^گوگل (.*)$",
+    "^%.سرچ (.*)$",
+	"^گوگل (.*)$",
   },
   run = run
 }
+
+
+
+
+--  -_-_-_-_-_-_-_-_-_-   ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||-_-_-_-_-_   ||-_-_-_-_-_
+--
+--
+--                               /\                              /\             /-_-_-_-_-_    ||-_-_-_-_-_   ||-_-_-_-_-_
+--  ||\\            //||        //\\        ||      //||        //\\           //              ||             ||         //
+--  || \\          // ||       //  \\       ||     // ||       //  \\         //               ||             ||       //
+--  ||  \\        //  ||      //    \\      ||    //  ||      //    \\       ||                ||             ||    //
+--  ||   \\      //   ||     //______\\     ||   //   ||     //______\\      ||      -_-_-_-   ||-_-_-_-_-_   || //
+--  ||    \\    //    ||    //        \\    ||  //    ||    //        \\     ||           ||   ||             ||  \\ 
+--  ||     \\  //     ||   //          \\   || //     ||   //          \\     \\          ||   ||             ||     \\
+--  ||      \\//      ||  //            \\  ||//      ||  //            \\     \\-_-_-_-_-||   ||-_-_-_-_-_   ||        \\
+--
+--
+--  ||-_-_-_-    ||           ||           ||               //-_-_-_-_-_-
+--  ||     ||    ||           ||           ||              //
+--  ||_-_-_||    ||           ||           ||             //
+--  ||           ||           ||           ||             \\
+--  ||           ||           \\           //              \\
+--  ||           ||            \\         //               //
+--  ||           ||-_-_-_-_     \\-_-_-_-//    -_-_-_-_-_-//
+--
+--By @ali_ghoghnoos
+--@telemanager_ch
