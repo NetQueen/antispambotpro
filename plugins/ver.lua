@@ -1,7 +1,7 @@
 do
 
 function run(msg, matches)
-  return '⭕️TeleAgent Telegram Bot v1.5⭕'..[[
+  return '⭕️TeleAgent Telegram Bot v2⭕'..[[
   http://uupload.ir/files/4lt0_photo_2016-03-02_15-43-43.jpg
 
 ⭕️TeleAgent Bot⭕️
