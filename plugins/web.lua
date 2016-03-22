@@ -45,9 +45,9 @@ end
 
 
 return {
-   description = "Website Screen Shot",
+   description = "Send an screenshot of a website.",
    usage = {
-      "/web (url) : screen shot of website"
+      "!webshot [url]: Take an screenshot of the web and send it back to you."
    },
    patterns = {
       "^سایت (https?://[%w-_%.%?%.:/%+=&]+)$",
