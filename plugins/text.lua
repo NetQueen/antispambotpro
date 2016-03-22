@@ -13,20 +13,57 @@ local function run(msg, matches)
     .."\\dpi{300}%20\\LARGE%20"..eq
 
   local receiver = get_receiver(msg)
-  local title = "Edit LaTeX on www.codecogs.com/eqnedit.php?latex="..eq
+  local title = "نیرو گرفته از www.codecogs.com/eqnedit.php?latex="..eq
   send_photo_from_url(receiver, url, send_title, {receiver, title})
 end
 
 return {
-  description = "Convert Text to Image",
+  description = "Convert LaTeX equation to image",
   usage = {
-    "/conv (txt) : convert txt to img"
+    "!tex [equation]: Convert LaTeX equation to image"
   },
   patterns = {
-    "^تبدیل (.*)$"
+    "^!tex (.+)$",
+    "^تبدیل (.+)$",
+    "^!text2img (.+)$",
+    "^!textopic (.+)$",
+    "^!tex2pic (.+)$"
   },
   run = run
 }
 
 end
 
+
+
+--  -_-_-_-_-_-_-_-_-_-   ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||-_-_-_-_-_   ||-_-_-_-_-_
+--
+--
+--                               /\                              /\             /-_-_-_-_-_    ||-_-_-_-_-_   ||-_-_-_-_-_
+--  ||\\            //||        //\\        ||      //||        //\\           //              ||             ||         //
+--  || \\          // ||       //  \\       ||     // ||       //  \\         //               ||             ||       //
+--  ||  \\        //  ||      //    \\      ||    //  ||      //    \\       ||                ||             ||    //
+--  ||   \\      //   ||     //______\\     ||   //   ||     //______\\      ||      -_-_-_-   ||-_-_-_-_-_   || //
+--  ||    \\    //    ||    //        \\    ||  //    ||    //        \\     ||           ||   ||             ||  \\ 
+--  ||     \\  //     ||   //          \\   || //     ||   //          \\     \\          ||   ||             ||     \\
+--  ||      \\//      ||  //            \\  ||//      ||  //            \\     \\-_-_-_-_-||   ||-_-_-_-_-_   ||        \\
+--
+--
+--  ||-_-_-_-    ||           ||           ||               //-_-_-_-_-_-
+--  ||     ||    ||           ||           ||              //
+--  ||_-_-_||    ||           ||           ||             //
+--  ||           ||           ||           ||             \\
+--  ||           ||           \\           //              \\
+--  ||           ||            \\         //               //
+--  ||           ||-_-_-_-_     \\-_-_-_-//    -_-_-_-_-_-//
+--
+--By @ali_ghoghnoos
+--@telemanager_ch
