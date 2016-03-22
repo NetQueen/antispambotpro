@@ -12,7 +12,7 @@ local function run(msg, matches)
     send_document(get_receiver(msg), "./data/owner.webp", ok_cb, false)
       return "شما صاحب گروه هستید"
     elseif is_momod(msg) then
-    send_document(get_receiver(msg), "./data/moderetion.webp", ok_cb, false)
+    send_document(get_receiver(msg), "./data/moderator.webp", ok_cb, false)
       return "شما مدیر گروه هستید"
     else
       send_document(get_receiver(msg), "./data/member.webp", ok_cb, false)
