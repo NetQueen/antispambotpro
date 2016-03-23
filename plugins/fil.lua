@@ -132,6 +132,8 @@ return {
   },
   patterns = {
     "^[Ff](ilter) (.+) (.*)$",
+    "^[Ff](ilter) (.+) (.+) (.*)$",
+    "^[Ff](ilter) (.+) (.+) (.+) (.*)$",
     "^[Ff](ilterlist)$",
     "(.*)",
   },
