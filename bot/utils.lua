@@ -20,16 +20,13 @@ function get_receiver(msg)
   if msg.to.type == 'chat' then
     return 'chat#id'..msg.to.id
   end
-  if msg.to.type == 'channel' then
-    return 'channel#id'..msg.to.id
-  end
   if msg.to.type == 'encr_chat' then
     return msg.to.print_name
   end
 end
 
 function is_chat_msg( msg )
-  if msg.to.type == 'chat' or msg.to.type == 'channel' then
+  if msg.to.type == 'chat' then
     return true
   end
   return false
@@ -814,10 +811,16 @@ function ban_list(chat_id)
   local text = "Ban list !\n\n"
   for k,v in pairs(list) do
  		local user_info = redis:hgetall('user:'..v)
-		if user_info and user_info.print_name then
-   	text = text..k.." - "..string.gsub(user_info.print_name, "_", " ").." ["..v.."]\n"
-  	else 
-    text = text..k.." - "..v.."\n"
+-- 		vardump(user_info)
+		if user_info then
+		  if user_info.username then
+		    user = '@'..user_info.username
+	    elseif user_info.print_name and not user_info.username then
+	      user = string.gsub(user_info.print_name, "_", " ")
+  	  else 
+        user = ''
+      end
+      text = text..k.." - "..user.." ["..v.."]\n"
 		end
 	end
  return text
@@ -829,11 +832,17 @@ function banall_list()
   local list = redis:smembers(hash)
   local text = "global bans !\n\n"
   for k,v in pairs(list) do
-		 		local user_info = redis:hgetall('user:'..v)
-		if user_info and user_info.print_name then
-   	text = text..k.." - "..string.gsub(user_info.print_name, "_", " ").." ["..v.."]\n"
-  	else 
-    text = text..k.." - "..v.."\n"
+ 		local user_info = redis:hgetall('user:'..v)
+-- 		vardump(user_info)
+		if user_info then
+		  if user_info.username then
+		    user = '@'..user_info.username
+	    elseif user_info.print_name and not user_info.username then
+	      user = string.gsub(user_info.print_name, "_", " ")
+  	  else 
+        user = ''
+      end
+      text = text..k.." - "..user.." ["..v.."]\n"
 		end
 	end
  return text
