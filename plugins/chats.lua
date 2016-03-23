@@ -11,6 +11,9 @@ end
 if msg.text == "hello" then
 	return "Hi honey"
 end
+if msg.text == "علی" then
+	return "با باباییم چیکار داری؟"
+end
 if msg.text == "سلام" then
 	return "سلام عزیزم"
 end
@@ -32,8 +35,6 @@ if msg.text == "قیمت" then
 
 مادام العمر: 5000 هزار تومان⭕️
 
-رایگان: از طریق ارسال تبلیغات کانال در یک کانال یا ربات 1K نفر به بالا📣
-
 خرید از دو راه شارژ و واریز به کارت ممکن است✔️
 
 شماره حساب:🏧 6273531307197961
@@ -45,36 +46,6 @@ if msg.text == "قیمت" then
 end
 if msg.text == "ربات" then
 	return "بله؟"
-end
-if msg.text == "مونا" then
-	return "❤️MONA JOON❤️"
-end
-if msg.text == "علی محمد" then
-	return "❤️Ali JOON❤️"
-end
-if msg.text == "مهدی" then
-	return "❤️Mahdi JOON❤️"
-end
-if msg.text == "علیرضا" then
-	return "❤️AliReza JOON❤"
-end
-if msg.text == "سحر" then
-	return "❤️Sahar JOON❤"
-end
-if msg.text == "محدثه" then
-	return "❤Mohadese JOON❤"
-end
-if msg.text == "عماد" then
-	return "❤Emad JOON❤"
-end
-if msg.text == "زهرا" then
-	return "❤Zhahra JOON❤"
-end
-if msg.text == "علی" then
-	return "❤Ali JOON❤"
-end
-if msg.text == "کسری" then
-	return "❤Kasra JOON❤"
 end
 if msg.text == "Salam" then
 	return "Salam aleykom"
@@ -120,24 +91,14 @@ return {
 	patterns = {
 		"^[Hh]i$",
 		"^[Hh]ello$",
-		"^[Zz]ac$",
 		"^TeleAgent$",
 		"^سلام$",
 		"^خوبی$",
 		"^بای$",
 		"^ربات$",
 		"^خوبی؟$",
-		"^مونا$",
-		"^علی محمد$",
-		"^مهدی$",
-		"^علیرضا$",
-		"^کسری$",
-		"^سحر$",
-		"^زهرا$",
-		"^محدثه$",
 		"^علی$",
 		"^قیمت$",
-		"^عماد$",
 		"^[Bb]ot$",
 		"^[Tt]eleAgent$",
 		"^[Bb]ye$",
