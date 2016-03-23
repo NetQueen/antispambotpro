@@ -74,7 +74,7 @@ do local _ = {
     "fil",
     "welcome",
     "lea",
-    "voice"
+    "voice1"
   },
   help_text = [[⭕️لیست دستورات مدیریت گروه:
 
