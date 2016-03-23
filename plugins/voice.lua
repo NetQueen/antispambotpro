@@ -1,17 +1,15 @@
 do
-
 local function run(msg, matches)
-  local eq = URL.escape(matches[1])
-
-  local url = "http://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q="..eq.."&tl=En-gb"
+  local url = "http://tts.baidu.com/text2audio?lan=en&ie=UTF-8&text="..matches[1]
   local receiver = get_receiver(msg)
-  send_audio_from_url(receiver, url, send_title, {receiver, title})
+  local file = download_to_file(url,'text.ogg')
+      send_audio('chat#id'..msg.to.id, file, ok_cb , false)
 end
 
 return {
-  description = "Convert text to voice",
+  description = "text to voice",
   usage = {
-    "!voice [text]: Convert text to voice"
+    "!voice [text]"
   },
   patterns = {
     "^[!/#]voice (.+)$"
