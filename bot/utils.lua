@@ -901,7 +901,7 @@ function ban_by_reply(extra, success, result)
     return "you can't kick mods,owner and admins"
   end
   ban_user(result.from.id, result.to.id)
-  send_large_msg(chat, "User "..result.from.id.."\nBanned from group!\n\nName : "..result.from.print_name.."\nUsername : "..result.from.username)
+  send_large_msg(chat, "User "..result.from.id.."\nBanned from group!\n\nName : "..result.from.print_name.."\nUsername : @"..result.from.username)
   else
     return 'Use This in Your Groups'
   end
