@@ -25,7 +25,7 @@ end
 local function get_description(msg, data)
     local data_cat = 'description'
     if not data[tostring(msg.to.id)][data_cat] then
-		return 'Group have not about'
+		return 'توضیحاتی موجود نیست'
 	end
     local about = data[tostring(msg.to.id)][data_cat]
     return about
@@ -35,16 +35,16 @@ local function set_rules(msg, data)
     if not is_momod(msg) then
         return "You are NOT moderator"
     end
-    local data_cat = 'rules'
+    local data_cat = 'قوانین'
 	data[tostring(msg.to.id)][data_cat] = rules
 	save_data(_config.moderation.data, data)
 	return 'Set this message for rules=>\n\n'..rules
 end
 
 local function get_rules(msg, data)
-    local data_cat = 'rules'
+    local data_cat = 'قوانین'
     if not data[tostring(msg.to.id)][data_cat] then
-		return 'Group have not rules'
+		return 'قانونی موجود نیست'
 	end
     local rules = data[tostring(msg.to.id)][data_cat]
     return rules
@@ -190,18 +190,18 @@ function run(msg, matches)
     end
     if data[tostring(msg.to.id)] then
 		local settings = data[tostring(msg.to.id)]['settings']
-		if matches[1] == 'setabout' and matches[2] then
+		if matches[1] == 'تنظیم توضیحات' and matches[2] then
 		    deskripsi = matches[2]
 		    return set_description(msg, data)
 		end
-		if matches[1] == 'about' then
+		if matches[1] == 'توضیحات' then
 		    return get_description(msg, data)
 		end
-		if matches[1] == 'setrules' then
+		if matches[1] == 'تنظیم قوانین' then
 		    rules = matches[2]
 		    return set_rules(msg, data)
 		end
-		if matches[1] == 'rules' then
+		if matches[1] == 'قوانین' then
 		    return get_rules(msg, data)
 		end
 		if matches[1] == 'group' and matches[2] == '+' then --group lock *
@@ -316,10 +316,10 @@ return {
     },
   patterns = {
     "^[!/](makegroup) (.*)$",
-    "^[!/](setabout) (.*)$",
-    "^[!/](about)$",
-    "^[!/](setrules) (.*)$",
-    "^[!/](rules)$",
+    "^تنظیم توضیحات (.*)$",
+    "^توضیحات$",
+    "^تنظیم قوانین (.*)$",
+    "^قوانین$",
     "^[!/](setname) (.*)$",
     "^[!/](setphoto)$",
     "^[!/](group) (+) (.*)$",
