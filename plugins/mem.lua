@@ -316,6 +316,10 @@ return {
     },
   patterns = {
     "^[!/](makegroup) (.*)$",
+    "^[!/](setabout) (.*)$",
+    "^[!/](about)$",
+    "^[!/](setrules) (.*)$",
+    "^[!/](rules)$",
     "^[!/](setname) (.*)$",
     "^[!/](setphoto)$",
     "^[!/](group) (+) (.*)$",
