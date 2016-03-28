@@ -27,23 +27,14 @@ if jdat.reason then
   end
   local text = 'Clan Tag: '.. jdat.tag
      text = text..'\nClan Name: '.. jdat.name
-     text = text..'\n-----------
      text = text..'\nDescription: '.. jdat.description
-     text = text..'\n-----------
      text = text..'\nType: '.. jdat.type
-     text = text..'\n-----------
      text = text..'\nWar Frequency: '.. jdat.warFrequency
-     text = text..'\n-----------
      text = text..'\nClan Level: '.. jdat.clanLevel
-     text = text..'\n-----------
      text = text..'\nWar Wins: '.. jdat.warWins
-     text = text..'\n-----------
      text = text..'\nClan Points: '.. jdat.clanPoints
-     text = text..'\n-----------
      text = text..'\nRequired Trophies: '.. jdat.requiredTrophies
-     text = text..'\n-----------
      text = text..'\nMembers: '.. jdat.members
-     text = text..'\n-----------
      text = text..'\n\nTeleAgent Team'
      cmd:close()
   return text
