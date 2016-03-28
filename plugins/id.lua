@@ -32,7 +32,7 @@ local function run(msg, matches)
   if matches[1] == "ایدی" then
     local text = user_print_name(msg.from) .. ' (ایدی شما 👤 ' .. msg.from.id .. ')'
     if is_chat_msg(msg) then
-      text = text .. "\nشما در این گروه هستید:  " .. user_print_name(msg.to) .. " (ایدی گروه 👥 " .. msg.to.id  .. ")"
+      text = text .. "\n\nشما در این گروه هستید:  " .. user_print_name(msg.to) .. "\n\n (ایدی گروه 👥 " .. msg.to.id  .. ")"
     end
     return text
   elseif matches[1] == "chat" then
