@@ -25,7 +25,7 @@ end
 local function get_description(msg, data)
     local data_cat = 'description'
     if not data[tostring(msg.to.id)][data_cat] then
-		return 'توضیحاتی موجود نیست'
+		return 'Group have not about'
 	end
     local about = data[tostring(msg.to.id)][data_cat]
     return about
@@ -35,16 +35,16 @@ local function set_rules(msg, data)
     if not is_momod(msg) then
         return "You are NOT moderator"
     end
-    local data_cat = 'قوانین'
+    local data_cat = 'rules'
 	data[tostring(msg.to.id)][data_cat] = rules
 	save_data(_config.moderation.data, data)
 	return 'Set this message for rules=>\n\n'..rules
 end
 
 local function get_rules(msg, data)
-    local data_cat = 'قوانین'
+    local data_cat = 'rules'
     if not data[tostring(msg.to.id)][data_cat] then
-		return 'قانونی موجود نیست'
+		return 'Group have not rules'
 	end
     local rules = data[tostring(msg.to.id)][data_cat]
     return rules
@@ -190,18 +190,18 @@ function run(msg, matches)
     end
     if data[tostring(msg.to.id)] then
 		local settings = data[tostring(msg.to.id)]['settings']
-		if matches[1] == 'تنظیم توضیحات' and matches[2] then
+		if matches[1] == 'setabout' and matches[2] then
 		    deskripsi = matches[2]
 		    return set_description(msg, data)
 		end
-		if matches[1] == 'توضیحات' then
+		if matches[1] == 'about' then
 		    return get_description(msg, data)
 		end
-		if matches[1] == 'تنظیم قوانین' then
+		if matches[1] == 'setrules' then
 		    rules = matches[2]
 		    return set_rules(msg, data)
 		end
-		if matches[1] == 'قوانین' then
+		if matches[1] == 'rules' then
 		    return get_rules(msg, data)
 		end
 		if matches[1] == 'group' and matches[2] == '+' then --group lock *
