@@ -304,7 +304,7 @@ local function get_description(msg, data)
   end
   local about = data[tostring(msg.to.id)][data_cat]
   local about = string.gsub(msg.to.print_name, "_", " ")..':\n\n'..about
-  return 'درباره'..about
+  return 'درباره '..about
 end
 local function lock_group_arabic(msg, data, target)
   if not is_momod(msg) then
