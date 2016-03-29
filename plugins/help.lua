@@ -1,8 +1,7 @@
-local function run(msg, matches)
-if matches[1] == 'راهنما' or matches[1]:lower() == 'help fa' and is_momod(msg) then
-return [[ 
+do
 
-لیست دستورات مدیریت گروه:
+function run(msg, matches)
+  return 'لیست دستورات مدیریت گروه:'..[[
 
 حذف کردن کاربر ⬅️ اخراج [آیدی،کد،ریپلای]
 
@@ -128,14 +127,19 @@ return [[
 دریافت راهنمای ربات ↔️ راهنما
 —------------------------------—
 
-● TeleAgent Bot ● V2
+● TeleAgent Bot ● V2]]
+end
 
-]]
 return {
-patterns = {
-"^(راهنما)$",
-"^(help fa)$",
-},
-run = run
+  description = "Robot and Creator About", 
+  usage = "help : robot info",
+  patterns = {
+    "^[!/][Hh][Ee][Ll][Pp]$",
+    "^[Hh][Ee][Ll][Pp]$",
+    "^[!/]help$",
+    "^help$"
+  }, 
+  run = run 
 }
+
 end
