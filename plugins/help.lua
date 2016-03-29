@@ -1,5 +1,5 @@
 local function run(msg, matches)
-if matches[1] == 'راهنما' or matches[1]:lower() == 'help' and is_momod(msg) then
+if matches[1] == 'راهنما' or matches[1]:lower() == 'help fa' and is_momod(msg) then
 return [[ 
 
 لیست دستورات مدیریت گروه:
@@ -134,7 +134,7 @@ return [[
 return {
 patterns = {
 "^(راهنما)$",
-"^(help)$",
+"^(help fa)$",
 },
 run = run
 }
