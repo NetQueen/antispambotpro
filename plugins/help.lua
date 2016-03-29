@@ -1,6 +1,7 @@
 local function run(msg, matches)
 if matches[1] == 'راهنما' or matches[1]:lower() == 'help' and is_momod(msg) then
 return [[ 
+
 لیست دستورات مدیریت گروه:
 
 حذف کردن کاربر ⬅️ اخراج [آیدی،کد،ریپلای]
@@ -128,6 +129,7 @@ return [[
 —------------------------------—
 
 ● TeleAgent Bot ● V2
+
 ]]
 return {
 patterns = {
