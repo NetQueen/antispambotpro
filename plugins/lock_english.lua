@@ -9,17 +9,18 @@ if not is_momod(msg) then
 
 
 chat_del_user('chat#id'..msg.to.id, 'user#id'..msg.from.id, ok_cb, true)
-    local msgtag = 'Dont Speak English here '
+    local msg = 'You cannot use English words here . Bye ! '
    local receiver = msg.to.id
     send_large_msg('chat#id'..receiver, msgads.."\n", ok_cb, false)
 
       end
    end
-end
 
-return {patterns = {
-"[Bb](.*)",
+
+return {
+patterns = {
 "[Aa](.*)",
+"[Bb](.*)",
 "[Cc](.*)",
 "[Dd](.*)",
 "[Ee](.*)",
@@ -44,5 +45,7 @@ return {patterns = {
 "[Xx](.*)",
 "[Yy](.*)",
 "[Zz](.*)",
-}, run = run}
-
+}, 
+run = run
+}
+end
