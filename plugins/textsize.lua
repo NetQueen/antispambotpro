@@ -32,5 +32,3 @@ return {
 }
 
 end
---By @Hextor_ch
-@Hextor_admin
