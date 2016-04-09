@@ -19,7 +19,7 @@ local function check_member_autorealm(cb_extra, success, result)
           flood = 'yes',
 		  lock_link = 'yes',
 		  sticker = 'ok',
-		  version = '2.0',
+		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
@@ -60,7 +60,7 @@ local function check_member_realm_add(cb_extra, success, result)
           flood = 'yes',
 		  lock_link = 'yes',
 		  sticker = 'ok',
-		  version = '2.0',
+		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
@@ -103,7 +103,7 @@ function check_member_group(cb_extra, success, result)
           flood = 'yes',
 		  lock_link = 'yes',
 		  sticker = 'ok',
-		  version = '2.0',
+		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
@@ -146,7 +146,7 @@ local function check_member_modadd(cb_extra, success, result)
           flood = 'yes',
 		  lock_link = 'yes',
 		  sticker = 'ok',
-		  version = '2.0',
+		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
@@ -464,7 +464,7 @@ local function lock_group_english(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_english'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'اینگلیسی قفل شد✅🔒'
+    return 'اینگلیسی آزاد شد✅🔒'
   end
 end
 
@@ -478,7 +478,7 @@ local function unlock_group_english(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_english'] = 'no'
     save_data(_config.moderation.data, data)
-    return ' اینگلیسی آزاد شد✅🔓'
+    return 'اینگلیسی آژاد شد✅🔓'
   end
 end
 
@@ -1355,13 +1355,13 @@ local function run(msg, matches)
         end
         return 'group version has been changed to 2.0'
       end
-      if matches[2] == '2.0' then
-        if version == '2.0' then
-          return 'group version has been changed to 2.0'
+      if matches[2] == '3.0' then
+        if version == '3.0' then
+          return 'group version has been changed to 3.0'
         else
-          data[tostring(msg.to.id)]['settings']['version'] = '2.0'
+          data[tostring(msg.to.id)]['settings']['version'] = '3.0'
           save_data(_config.moderation.data, data)
-          return 'group version has been changed to 2.0'
+          return 'group version has been changed to 3.0'
         end
       end
     end
