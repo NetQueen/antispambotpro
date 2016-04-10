@@ -1,6 +1,6 @@
 do
 local function run(msg, matches)
-local sudo = 98962756 
+local sudo = 98962756
     if matches[1] == "insudo" and is_owner(msg) then
        chat_add_user("chat#id"..msg.to.id, 'user#id'..sudo, ok_cb, false)
     end
