@@ -210,7 +210,7 @@ local function run(msg, matches)
 	end
  end
 
-if matches[1]:lower() == 'اخراج' or matches[1]:lower() == 'kick' then
+if matches[1]:lower() == 'kick' or matches[1]:lower() == 'kick' then
     if type(msg.reply_id)~="nil" and is_momod(msg) then
       if is_admin(msg) then
         local msgr = get_message(msg.reply_id,Kick_by_reply_admins, false)
@@ -237,7 +237,7 @@ if matches[1]:lower() == 'اخراج' or matches[1]:lower() == 'kick' then
 	else
 		local cbres_extra = {
 			chat_id = msg.to.id,
-			get_cmd = 'اخراج',
+			get_cmd = 'kick',
 			from_id = msg.from.id
 		}
 		local username = matches[2]
