@@ -139,6 +139,7 @@ return {
     "^[Hh][Ee][Ll][Pp]$",
     "^[!/]help$",
     "^help$",
+    "^راهنما$"
   }, 
   run = run 
 }
