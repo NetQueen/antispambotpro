@@ -138,7 +138,7 @@ return {
     "^[!/][Hh][Ee][Ll][Pp]$",
     "^[Hh][Ee][Ll][Pp]$",
     "^[!/]help$",
-    "^help$"
+    "^help$",
   }, 
   run = run 
 }
