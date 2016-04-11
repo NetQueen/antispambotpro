@@ -464,7 +464,7 @@ local function lock_group_english(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_english'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'اینگلیسی آزاد شد✅🔒'
+    return 'اینگیلسی قفل شد✅🔒'
   end
 end
 
@@ -478,7 +478,7 @@ local function unlock_group_english(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_english'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'اینگلیسی آژاد شد✅🔓'
+    return 'اینگلیسی آزاد شد✅🔓'
   end
 end
 
