@@ -292,7 +292,7 @@ local function show_group_settingsmod(msg, data, target)
     	welcome = data[tostring(msg.to.id)]['settings']['welcome']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات گروه:\n⚙⚙⚙⚙\n⚙ قفل نام گروه : "..settings.lock_name.."\n⚙ قفل عکس گروه : "..settings.lock_photo.."\n⚙ قفل خروج : "..leave_ban.."\n⚙ ممنوعیت ارسال لینک : "..lock_link.."\n⚙ قفل ورود : "..lock_join.."\n⚙ قفل رسانه : "..lock_media.."\n⚙ قفل اشتراک گذاری : "..lock_share.."\n⚙ حساسیت اسپم : "..NUM_MSG_MAX.."\n⚙ قفل ربات ها : "..bots_protection.."\n⚙ خوش امد : "..welcome.."\n⚙ قفل تگ : "..tag.."\n⚙ قفل اینگلیسی :"..lock_english.."\n⚙ قفل فحش : "..lock_badw.."\n⚙ مدل گروه : "..groupmodel.."\n⚙ ورژن : "..version
+  local text = "تنظیمات کلی:\n🔸🔹🔸🔹\n🔶 قفل نام گروه : "..settings.lock_name.."\n🔷 قفل عکس گروه : "..settings.lock_photo.."\n🔶 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔷 قفل ربات ها : "..bots_protection.."\n\nتنظیمات مدیریتی:\n🔻 قفل ورود : "..lock_join.."\n🔺قفل رسانه : "..lock_media.."\n🔻 قفل اشتراک گذاری : "..lock_share.."\n🔺 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔻 قفل خروج : "..leave_ban.."\n🔺 خوش امد : "..welcome.."\n🔻 قفل تگ : "..tag.."\n🔺 قفل اینگلیسی :"..lock_english.."\n🔻 قفل فحش : "..lock_badw.."\n\nمشخصات گروه:\n🔘 مدل گروه : "..groupmodel.."\n🔘 ورژن : "..version.."\n\n</TeleAgent Team>
   return text
 end
 
