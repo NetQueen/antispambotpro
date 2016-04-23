@@ -1,5 +1,5 @@
 local function run(msg, matches)
-	if not is_admin(msg) then
+	if not is_momod(msg) then
 		return "این قابلیت فقط مربوط به ادمینهاست" -- JOoN  faghat male adminas!  koskhol inhame plugin minevise mizare bara admin
 	end
 	if #matches < 2 then
