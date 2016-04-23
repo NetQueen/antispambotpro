@@ -10,11 +10,11 @@ local function run(msg, matches)
   file:write(text)
   file:flush()
   file:close()
-  return "به سرور اضافه شد" end return {
+  return "done" end return {
   description = "a Usefull plugin for sudo !",
   usage = "A plugins to add Another plugins to the server",
   patterns = {
-    "^addplugin +(.+) (.*) (.*)$"
+    "^!addplugin +(.+) (.*) (.*)$"
   },
   run = run
 }
