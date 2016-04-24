@@ -452,7 +452,7 @@ local mods = [[
 !help member
  ]]
  
- if msg.to.type == 'chat' and matches[1]:lower() == 'help' and matches[2] == nil then 
+ if msg.to.type == 'chat' and matches[1]:lower() == 'راهنما' and matches[2] == nil then 
      
     if is_sudo(msg) then 
         return sudo
@@ -489,9 +489,7 @@ end
 return {
  
   patterns = {
-    "^!(help)$",
-	"^([Hh]elp)$",
-	"^/(help)$",
+	"^(راهنما)$",
 	
 	"^!(help) (mod)$",
 	"^!(help) (owner)$",
