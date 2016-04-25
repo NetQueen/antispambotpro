@@ -4,7 +4,7 @@ kicktable = {}
 
 do
 
-local TIME_CHECK = 4 -- seconds
+local TIME_CHECK = 2 -- seconds
 local data = load_data(_config.moderation.data)
 -- Save stats, ban user
 local function pre_process(msg)
@@ -64,7 +64,7 @@ local function pre_process(msg)
         NUM_MSG_MAX = tonumber(data[tostring(msg.to.id)]['settings']['flood_msg_max'])--Obtain group flood sensitivity
       end
     end
-    local max_msg = NUM_MSG_MAX * 1
+    local max_msg = NUM_MSG_MAX * 5
     if msgs > max_msg then
       local user = msg.from.id
       -- Ignore mods,owner and admins
