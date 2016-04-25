@@ -1,19 +1,42 @@
-local function run(msg, matches)
-  local eq = matches[1]
+do
 
-  local url = "http://www.farsireader.com/PlayText.aspx?Text="..eq.."Punc=false"
+local function run(msg, matches)
+
+
+local text = matches[1]
+
+  local b = 1
+
+  while b ~= 0 do
+    textc = text:trim()
+    text,b = text:gsub(' ','.')
+    
+    
+  if msg.to.type == 'user' then 
+      return nil
+      else
+  local url = "http://www.farsireader.com/PlayText.aspx?Text="..textc
   local receiver = get_receiver(msg)
   local file = download_to_file(url,'text.ogg')
-  send_audio('chat#id'..msg.to.id, file, ok_cb , false)
+      send_audio('chat#id'..msg.to.id, file, ok_cb , false)
 end
-
+end
+  end
 return {
-  description = "Convert text to voice",
+  description = "text to voice",
   usage = {
-    "Fa [text]: Convert text to voice"
+    "!fa [text]"
   },
   patterns = {
-    "^[Ff]a (.+)$"
+    "^!fa +(.*)$",
+    "^/fa +(.*)$",
+    "^[!/#]fa (.+)$",
+    "^!tts +(.*)$",
+    "^/tts +(.*)$",
+    "^!ts +(.*)$",
+    "^/ts +(.*)$",
   },
   run = run
 }
+
+end
