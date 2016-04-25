@@ -3,7 +3,7 @@ kicktable = {}
 
 do
 
-local TIME_CHECK = 5 -- seconds
+local TIME_CHECK = 1 -- seconds
 local data = load_data(_config.moderation.data)
 -- Save stats, ban user
 local function pre_process(msg)
