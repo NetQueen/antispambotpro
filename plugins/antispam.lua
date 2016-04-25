@@ -63,7 +63,7 @@ local function pre_process(msg)
         NUM_MSG_MAX = tonumber(data[tostring(msg.to.id)]['settings']['flood_msg_max'])--Obtain group flood sensitivity
       end
     end
-    local max_msg = NUM_MSG_MAX * 1
+    local max_msg = NUM_MSG_MAX * 5
     if msgs > max_msg then
       local user = msg.from.id
       -- Ignore mods,owner and admins
