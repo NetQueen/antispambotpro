@@ -276,7 +276,7 @@ local function show_group_settingsmod(msg, data, target)
     	lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
    	end
 	local lock_gif = "no"
-	if data[tostring(msg.to.id)]['settings']['lock_gif'] then
+    if data[tostring(msg.to.id)]['settings']['lock_gif'] then
         lock_gif = data[tostring(msg.to.id)]['settings']['lock_gif']
 	end
     local lock_english = "no"
@@ -389,6 +389,20 @@ local function lock_group_gif(msg, data, target)
     data[tostring(target)]['settings']['lock_gif'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'ارسال گیف قفل شد✅🔒'
+  end
+end
+
+local function unlock_group_gif(msg, data, target)
+  if not is_momod(msg) then
+    return "قفط مدیران❗️"
+  end
+  local group_gif_lock = data[tostring(target)]['settings']['lock_gif']
+  if group_gif_lock == 'no' then
+    return 'ارسال گیف از قبل باز است🔓'
+  else
+    data[tostring(target)]['settings']['lock_gif'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'ارسال گیف آزاد است✅🔓'
   end
 end
 
