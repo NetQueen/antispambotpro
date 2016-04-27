@@ -275,7 +275,7 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['lock_badw'] then
     	lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
    	end
-	local lock_gif = 'no'
+	local lock_gif = "no"
 	if data[tostring(msg.to.id)]['settings']['lock_gif'] then
         lock_gif = data[tostring(msg.to.id)]['settings']['lock_gif']
 	end
@@ -300,8 +300,7 @@ local function show_group_settingsmod(msg, data, target)
     	welcome = data[tostring(msg.to.id)]['settings']['welcome']
    	end
   local settings = data[tostring(target)]['settings']
-local text = "تنظیمات کلی:\n______________________________\n🔸 قفل نام گروه : "..settings.lock_name.."\n🔹 قفل عکس گروه : "..settings.lock_photo.."\n🔸 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔹 قفل ربات ها : "..bots_protection.."\n🔸 قفل ورود : "..lock_join.."\n🔹 قفل خروج : "..leave_ban.."\n\nتنظیمات مدیریتی:\n⭕️قفل رسانه : "..lock_media.."\n⭕️ قفل اشتراک گذاری : "..lock_share.."\n⭕️قفل گیف : "..lock_gif.."\n⭕️ممنوعیت ارسال لینک : "..lock_link.."\n⭕️ خوش امد : "..welcome.."\n⭕️ قفل تگ : "..tag.."\n⭕️ قفل اینگلیسی :"..lock_english.."\n⭕️ قفل فحش : "..lock_badw.."\n\nمشخصات گروه: \n👥 مدل گروه : "..groupmodel.."\n🔢 ورژن : "..version.."\n\n</TeleAgent Team>"
-
+local text = "تنظیمات کلی:\n______________________________\n🔸 قفل نام گروه : "..settings.lock_name.."\n🔹 قفل عکس گروه : "..settings.lock_photo.."\n🔸 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔹 قفل ربات ها : "..bots_protection.."\n🔸 قفل ورود : "..lock_join.."\n🔹 قفل خروج : "..leave_ban.."\n\nتنظیمات مدیریتی:\n⭕️قفل رسانه : "..lock_media.."\n⭕️ قفل اشتراک گذاری : "..lock_share.."\n⭕️قفل گیف: "..lock_gif.."\n⭕️ممنوعیت ارسال لینک : "..lock_link.."\n⭕️ خوش امد : "..welcome.."\n⭕️ قفل تگ : "..tag.."\n⭕️ قفل اینگلیسی :"..lock_english.."\n⭕️ قفل فحش : "..lock_badw.."\n\nمشخصات گروه: ℹ️\n👥 مدل گروه : "..groupmodel.."\n🔢 ورژن : "..version.."\n\n</TeleAgent Team>"
   return text
 end
 
@@ -1297,7 +1296,7 @@ local function run(msg, matches)
         return lock_group_badw(msg, data, target)
       end
 	  if matches[2] == 'گیف' or matches[2] == 'gif' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked gif🔒 ")
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked gif ")
         return lock_group_gif(msg, data, target)
       end
       if matches[2] == 'اینگلیسی' or matches[2] == 'english' then
@@ -1356,7 +1355,7 @@ local function run(msg, matches)
         return unlock_group_badw(msg, data, target)
       end
 	  if matches[2] == 'گیف' or matches[2] == 'gif' then
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked gif🔓 ")
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked gif ")
         return unlock_group_gif(msg, data, target)
       end
       if matches[2] == 'اینگلیسی' or matches[2] == 'english' then
