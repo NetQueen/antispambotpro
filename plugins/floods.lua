@@ -3,7 +3,7 @@ kicktable = {}
 
 do
 
-local TIME_CHECK = 4 -- seconds
+local TIME_CHECK = 1 -- seconds
 local data = load_data(_config.moderation.data)
 -- Save stats, ban user
 local function pre_process(msg)
@@ -57,7 +57,7 @@ local function pre_process(msg)
     local hash = 'user:'..msg.from.id..':msgs'
     local msgs = tonumber(redis:get(hash) or 0)
     local data = load_data(_config.moderation.data)
-    local NUM_MSG_MAX = 4
+    local NUM_MSG_MAX = 5
     if data[tostring(msg.to.id)] then
       if data[tostring(msg.to.id)]['settings']['flood_msg_max'] then
         NUM_MSG_MAX = tonumber(data[tostring(msg.to.id)]['settings']['flood_msg_max'])--Obtain group flood sensitivity
