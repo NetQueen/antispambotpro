@@ -23,6 +23,7 @@ local function check_member_autorealm(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
+		  lock_gif = 'no'
 		  lock_english = 'no',
 		  lock_join = 'no',
 		  lock_media = 'no',
@@ -64,6 +65,7 @@ local function check_member_realm_add(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
+		  lock_gif = 'no'
 		  lock_english = 'no',
 		  lock_join = 'no',
 		  lock_media = 'no',
@@ -107,6 +109,7 @@ function check_member_group(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
+		  lock_gif = 'no'
 		  lock_english = 'no',
 		  lock_join = 'no',
 		  lock_media = 'no',
@@ -150,6 +153,7 @@ local function check_member_modadd(cb_extra, success, result)
 		  groupmodel = 'normal',
 		  tag = 'no',
 		  lock_badw = 'no',
+		  lock_gif = 'no'
 		  lock_english = 'no',
 		  lock_join = 'no',
 		  lock_media = 'no',
@@ -271,6 +275,10 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['lock_badw'] then
     	lock_badw = data[tostring(msg.to.id)]['settings']['lock_badw']
    	end
+	local lock_gif = 'no'
+	if data[tostring(msg.to.id)]['settings']['lock_gif'] then
+        lock_gif = data[tostring(msg.to.id)]['settings']['lock_gif']
+	end
     local lock_english = "no"
     if data[tostring(msg.to.id)]['settings']['lock_english'] then
     	lock_english = data[tostring(msg.to.id)]['settings']['lock_english']
@@ -292,7 +300,7 @@ local function show_group_settingsmod(msg, data, target)
     	welcome = data[tostring(msg.to.id)]['settings']['welcome']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات کلی:\n➖➖➖➖\n🔶 قفل نام گروه : "..settings.lock_name.."\n🔷 قفل عکس گروه : "..settings.lock_photo.."\n🔶 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔷 قفل ربات ها : "..bots_protection.."\n\nتنظیمات مدیریتی:\n🔻 قفل ورود : "..lock_join.."\n🔺قفل رسانه : "..lock_media.."\n🔻 قفل اشتراک گذاری : "..lock_share.."\n🔺ممنوعیت ارسال لینک : "..lock_link.."\n🔻 قفل خروج : "..leave_ban.."\n🔺 خوش امد : "..welcome.."\n🔻 قفل تگ : "..tag.."\n🔺 قفل اینگلیسی :"..lock_english.."\n🔻 قفل فحش : "..lock_badw.."\n\nمشخصات گروه:\n🔘 مدل گروه : "..groupmodel.."\n🔘 ورژن : "..version.."\n\n</TeleAgent Team>"
+local text = "تنظیمات کلی:\n______________________________\n🔸 قفل نام گروه : "..settings.lock_name.."\n🔹 قفل عکس گروه : "..settings.lock_photo.."\n🔸 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔹 قفل ربات ها : "..bots_protection.."\n🔸 قفل ورود : "..lock_join.."\n🔹 قفل خروج : "..leave_ban.."\n\nتنظیمات مدیریتی:\n⭕️قفل رسانه : "..lock_media.."\n⭕️ قفل اشتراک گذاری : "..lock_share.."\n⭕️قفل گیف: "..lock_gif.."\n⭕️ممنوعیت ارسال لینک : "..lock_link.."\n⭕️ خوش امد : "..welcome.."\n⭕️ قفل تگ : "..tag.."\n⭕️ قفل اینگلیسی :"..lock_english.."\n⭕️ قفل فحش : "..lock_badw.."\n\nمشخصات گروه: ℹ️\n👥 مدل گروه : "..groupmodel.."\n🔢 ورژن : "..version.."\n\n</TeleAgent Team>"
   return text
 end
 
@@ -367,6 +375,20 @@ local function unlock_group_tag(msg, data, target)
     data[tostring(target)]['settings']['tag'] = 'no'
     save_data(_config.moderation.data, data)
     return 'تگ کردن آزاد شد✅🔓'
+  end
+end
+
+local function lock_group_gif(msg, data, target)
+  if not is_momod(msg) then
+    return "قفط مدیران❗️"
+  end
+  local group_english_lock = data[tostring(target)]['settings']['lock_gif']
+  if group_english_lock == 'yes' then
+    return 'ارسال گیف از قبل قفل است🔒'
+  else
+    data[tostring(target)]['settings']['lock_gif'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'ارسال گیف قفل شد✅🔒'
   end
 end
 
@@ -1273,6 +1295,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked badw🔒 ")
         return lock_group_badw(msg, data, target)
       end
+	  if matches[2] == 'گیف' or matches[2] == 'gif' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked gif🔒 ")
+        return lock_group_gif(msg, data, target)
+      end
       if matches[2] == 'اینگلیسی' or matches[2] == 'english' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked english🔒 ")
         return lock_group_english(msg, data, target)
@@ -1327,6 +1353,10 @@ local function run(msg, matches)
       if matches[2] == 'فحش' or matches[2] == 'badw' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked badw🔓 ")
         return unlock_group_badw(msg, data, target)
+      end
+	  if matches[2] == 'گیف' or matches[2] == 'gif' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked gif🔓 ")
+        return unlock_group_gif(msg, data, target)
       end
       if matches[2] == 'اینگلیسی' or matches[2] == 'english' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked english🔓 ")
@@ -1439,7 +1469,7 @@ local function run(msg, matches)
         return "اول با لینک جدید یک  لینک جدید بسازید"
       end
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-      return "لینک گروه:\n🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷\n"..group_link
+      return "لینک گروه: 👥\n"..group_link
     end
       if matches[1] == 'لینک خصوصی' or matches[1] == 'linkpv' then
       if not is_momod(msg) then
@@ -1450,7 +1480,7 @@ local function run(msg, matches)
         return "اول با لینک جدید یک لینک جدید بسازید"
       end
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-     send_large_msg('user#id'..msg.from.id, "لینک گروه:\n🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷🤖🇮🇷\n"..group_link)
+     send_large_msg('user#id'..msg.from.id, "لینک گروه: 👥\n"..group_link)
     end
     if matches[1] == 'دارنده' or matches[1] == 'setleader' and matches[2] then
       if not is_owner(msg) then
