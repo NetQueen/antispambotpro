@@ -1,9 +1,10 @@
 
+--An empty table for solving multiple kicking problem(thanks to @topkecleon )
 kicktable = {}
 
 do
 
-local TIME_CHECK = 1 -- seconds
+local TIME_CHECK = 2 -- seconds
 local data = load_data(_config.moderation.data)
 -- Save stats, ban user
 local function pre_process(msg)
@@ -31,7 +32,7 @@ local function pre_process(msg)
   end
 
   -- Save stats on Redis
-  if msg.to.type == 'channel' then
+  if msg.to.type == 'chat' then
     -- User is on chat
     local hash = 'chat:'..msg.to.id..':users'
     redis:sadd(hash, msg.from.id)
@@ -77,12 +78,9 @@ local function pre_process(msg)
         return
       end
       kick_user(user, chat)
-      if msg.to.type == "user" then
-banall_user(msg.from.id)
-      end
       local name = user_print_name(msg.from)
       --save it to log file
-      --savelog(msg.to.id, name.." ["..msg.from.id.."] spammed and kicked ! ")
+      savelog(msg.to.id, name.." ["..msg.from.id.."] spammed and kicked ! ")
       -- incr it on redis
       local gbanspam = 'gban:spam'..msg.from.id
       redis:incr(gbanspam)
@@ -102,10 +100,10 @@ banall_user(msg.from.id)
           end
           local name = user_print_name(msg.from)
           --Send this to that chat
-          send_large_msg("channel#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." Globally banned (spamming)")
+          send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." Globally banned (spamming)")
           local log_group = 1 --set log group caht id
           --send it to log group
-          send_large_msg("channel#id"..log_group, "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)")
+          send_large_msg("chat#id"..log_group, "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)")
         end
       end
       kicktable[user] = true
@@ -118,7 +116,7 @@ end
 
 local function cron()
   --clear that table on the top of the plugins
-  kicktable = {}
+	kicktable = {}
 end
 
 return {
