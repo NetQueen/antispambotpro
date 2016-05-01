@@ -280,7 +280,7 @@ function create_config( )
     "lea",
     "voice"
     },
-    sudo_users = {98962756},--Sudo users
+    sudo_users = {195801672},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[ TeleAgent bot 
