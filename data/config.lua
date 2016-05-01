@@ -67,6 +67,7 @@ do local _ = {
     "location",
     "tagall",
     "nas",
+    "plugins",
     "admin"
   },
   help_text = "",
