@@ -4,7 +4,7 @@ local Dev = 195801672 --put your id here(BOT OWNER ID)
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
   if msg.to.type == 'chat' then
-    hash = 'rank:'..msg.to.id..':variables'
+     hash = 'rank:variables'
   end
   if hash then
     redis:hset(hash, name, value)
@@ -21,7 +21,7 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
     local text = '> نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
                ..'> یوزر: '..Username..'\n'
                ..'> ایدی کاربری : '..result.id..'\n\n'
-	local hash = 'rank:'..extra.chat2..':variables'
+	 hash = 'rank:variables'
 	local value = redis:hget(hash, result.id)
     if not value then
 	 if result.id == tonumber(Dev) then
@@ -60,7 +60,7 @@ local function action_by_id(extra, success, result)  -- /info <ID> function
     local text = '> نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
                ..'> یوزر: '..Username..'\n'
                ..'> ایدی کاربری : '..result.id..'\n\n'
-  local hash = 'rank:'..extra.chat2..':variables'
+   hash = 'rank:variables'
   local value = redis:hget(hash, result.id)
   if not value then
 	 if result.id == tonumber(Dev) then
@@ -98,7 +98,7 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
     local text = '> نام کامل : '..(result.from.first_name or '')..' '..(result.from.last_name or '')..'\n'
                ..'> یوزر: '..Username..'\n'
                ..'> ایدی کاربری : '..result.from.id..'\n\n'
-	local hash = 'rank:'..result.to.id..':variables'
+	 hash = 'rank:variables'
 		local value = redis:hget(hash, result.from.id)
 		 if not value then
 		    if result.from.id == tonumber(Dev) then
@@ -165,7 +165,7 @@ local function run(msg, matches)
    local text = text..'> فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
    local text = text..'> یوزر : '..Username..'\n'
    local text = text..'> ایدی کاربری : '..msg.from.id..'\n\n'
-   local hash = 'rank:'..msg.to.id..':variables'
+   local  hash = 'rank:variables'
 	if hash then
 	  local value = redis:hget(hash, msg.from.id)
 	  if not value then
@@ -222,8 +222,8 @@ return {
 	'(Reply)!setrank <rank>: change members rank.',
   },
   patterns = {
-	"^(آیدی)$",
-	"^(آیدی) (.*)$",
+	"^آیدی$",
+	"^آیدی (.*)$",
 	"^[/!]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (%d+) (.*)$",
 	"^[/!]([Ss][Ee][Tt][Rr][Aa][Nn][Kk]) (.*)$",
   },
