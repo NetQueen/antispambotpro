@@ -89,10 +89,8 @@ return {
 	description = "Chat With Robot Server", 
 	usage = "chat with robot",
 	patterns = {
-		"^[Hh]i$",
 		"^[Hh]ello$",
 		"^TeleAgent$",
-		"^سلام$",
 		"^خوبی$",
 		"^بای$",
 		"^ربات$",
@@ -103,7 +101,6 @@ return {
 		"^[Tt]eleAgent$",
 		"^[Bb]ye$",
 		"^?$",
-		"^[Ss]alam$",
 		}, 
 	run = run,
     --privileged = true,
