@@ -1,20 +1,25 @@
 do
 
 function run(msg, matches)
-  return '⭕️TeleAgent Telegram Bot v3.5⭕'..[[
-  http://uupload.ir/files/4lt0_photo_2016-03-02_15-43-43.jpg
+  return ''..[[
+  > TeleAgent Bot 
+>  Anti spam bot in Lua
+> German Server
 
-⭕️TeleAgent Bot⭕️
-🛡Anti spam bot🛡
-
-with lots of COOL stuffs!  ⚙
+> with lots of COOL stuffs!  ⚙
 from now on you can have your own ANTI SPAM Group! just contact to our SUDO for buying GP!🎁
-dont forget to visit our channel : @TeleAgentTeam
+dont forget to visit our channel : @TeleAgent_Team
 
-Bot SUDO👤
+Our Team: 👥
 @XHACKERX
+@Teleagent1
+@SiIencer
+@aidin009
+@CLieNT
+@VAMPAYER10
+@Telearm
 
-< TeleAgent,Group Manager > ]]
+< TeleAgent , Group Manager > ]]
 end
 
 return {
