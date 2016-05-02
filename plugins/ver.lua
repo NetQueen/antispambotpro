@@ -29,7 +29,8 @@ return {
     "^[!/][Te][Ee][Ll][Ee][Aa][Gg][Ee][Nn][Tt]$",
     "^[Te][Ee][Ll][Ee][Aa][Gg][Ee][Nn][Tt]$",
     "^[!/]teleagent$",
-    "^teleagent$"
+    "^[!/]ver$",
+    "^[!/]version$"
   }, 
   run = run 
 }
