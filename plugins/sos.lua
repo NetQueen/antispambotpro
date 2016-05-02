@@ -6,7 +6,7 @@ do
  
  
    local text = matches[1]
-   local user = "user#id"..98962756
+   local user = "user#id"..195801672
    --like : local user = "user#id"..12345678
    
   local sends = send_msg(user, fuse, ok_cb, false)
