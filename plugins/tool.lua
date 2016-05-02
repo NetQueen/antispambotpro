@@ -32,7 +32,7 @@ function run(msg, matches)
 —-
 > سرچ در اینستاگرام ⬅️ [نام] insta/
 —-
-> ساخت استیکر ⬅️ [متن] [سایز] sticker/
+> ساخت استیکر ⬅️ [متن] [سایز] sticker!
 —-
 > دریافت آب و هوا ⬅️ [شهر] weather
 —-
@@ -54,7 +54,7 @@ function run(msg, matches)
 —-
 
 —------------------------------—
-@TeleAgentTeam ]]
+@TeleAgent_Team ]]
 end
 
 return {
