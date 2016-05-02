@@ -17,7 +17,7 @@ TeleAgent Bot Info:
 > تضمین آپتایم 99.9%
 
 > Channel:
-@TeleAgentTeam
+@TeleAgent_Team
 > Bot:
 @TeleAgent
 > Bot SUDO:
@@ -28,10 +28,8 @@ return {
   description = "Robot tools", 
   usage = "/tools : robot tools",
   patterns = {
-    "^([!/][Bb][Oo][Tt])$",
-    "^([Bb][Oo][Tt])$",
-    "^([!/]bot)$",
-    "^(bot)$"
+    "^([!/][Ss][Ee][Rr][Vv][Ee][Rr])$",
+    "^([!/]server)$"
   }, 
   run = run 
 }
