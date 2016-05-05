@@ -1,10 +1,10 @@
 do
-local Dev = 195801672 --put your id here(BOT OWNER ID)
+local reza = 184413821 --put your id here(BOT OWNER ID)
 
 local function setrank(msg, name, value) -- setrank function
   local hash = nil
   if msg.to.type == 'chat' then
-     hash = 'rank:variables'
+    hash = 'rank:variables'
   end
   if hash then
     redis:hset(hash, name, value)
@@ -16,34 +16,35 @@ local function res_user_callback(extra, success, result) -- /info <username> fun
   if result.username then
    Username = '@'..result.username
    else
-   Username = '> ندارد'
+   Username = 'ندارد'
   end
-    local text = '> نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
-               ..'> یوزر: '..Username..'\n'
-               ..'> ایدی کاربری : '..result.id..'\n\n'
-	 hash = 'rank:variables'
+    local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
+               ..'یوزر: '..Username..'\n'
+			   ..'شماره تلفن : +"..(msg.from.phone or '')\n'
+               ..'ایدی کاربری : '..result.id..'\n\n'
+	local hash = 'rank:variables'
 	local value = redis:hget(hash, result.id)
     if not value then
-	 if result.id == tonumber(Dev) then
-	   text = text..'> مقام : مدیر کل ربات (Executive Admin) \n\n'
+	 if result.id == tonumber(reza) then
+	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 	  elseif is_admin2(result.id) then
-	   text = text..'> مقام : ادمین ربات (Admin) \n\n'
+	   text = text..'مقام : ادمین ربات (Admin) \n\n'
 	  elseif is_owner2(result.id, extra.chat2) then
-	   text = text..'> مقام : مدیر کل گروه (Owner) \n\n'
+	   text = text..'مقام : مدیر کل گروه (Owner) \n\n'
 	  elseif is_momod2(result.id, extra.chat2) then
-	    text = text..'> مقام : مدیر گروه (Moderator) \n\n'
+	    text = text..'مقام : مدیر گروه (Moderator) \n\n'
       else
-	    text = text..'> مقام : کاربر (Member) \n\n'
+	    text = text..'مقام : کاربر (Member) \n\n'
 	 end
    else
-   text = text..'> مقام : '..value..'\n\n'
+   text = text..'مقام : '..value..'\n\n'
   end
   local uhash = 'user:'..result.id
   local user = redis:hgetall(uhash)
   local um_hash = 'msgs:'..result.id..':'..extra.chat2
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
-  text = text..'> تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'TeleAgent Team'
+  text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
+  text = text..'@Hextor Team'
   send_msg(extra.receiver, text, ok_cb,  true)
   else
 	send_msg(extra.receiver, extra.user..' نام کاربری مورد نظر یافت نشد.', ok_cb, false)
@@ -55,34 +56,35 @@ local function action_by_id(extra, success, result)  -- /info <ID> function
  if result.username then
    Username = '@'..result.username
    else
-   Username = '> ندارد'
+   Username = 'ندارد'
  end
-    local text = '> نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
-               ..'> یوزر: '..Username..'\n'
-               ..'> ایدی کاربری : '..result.id..'\n\n'
-   hash = 'rank:variables'
+    local text = 'نام کامل : '..(result.first_name or '')..' '..(result.last_name or '')..'\n'
+               ..'یوزر: '..Username..'\n'
+			   ..'شماره تلفن : +"..(msg.from.phone or '')\n'
+               ..'ایدی کاربری : '..result.id..'\n\n'
+  local hash = 'rank:variables'
   local value = redis:hget(hash, result.id)
   if not value then
-	 if result.id == tonumber(Dev) then
-	   text = text..'> مقام : مدیر کل ربات (Executive Admin) \n\n'
+	 if result.id == tonumber(reza) then
+	   text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 	  elseif is_admin2(result.id) then
-	   text = text..'> مقام : ادمین ربات (Admin) \n\n'
+	   text = text..'مقام : ادمین ربات (Admin) \n\n'
 	  elseif is_owner2(result.id, extra.chat2) then
-	   text = text..'> مقام : مدیر کل گروه (Owner) \n\n'
+	   text = text..'مقام : مدیر کل گروه (Owner) \n\n'
 	  elseif is_momod2(result.id, extra.chat2) then
-	   text = text..'> مقام : مدیر گروه (Moderator) \n\n'
+	   text = text..'مقام : مدیر گروه (Moderator) \n\n'
 	  else
-	   text = text..'> مقام : کاربر (Member) \n\n'
+	   text = text..'مقام : کاربر (Member) \n\n'
 	  end
    else
-    text = text..'> مقام : '..value..'\n\n'
+    text = text..'مقام : '..value..'\n\n'
   end
   local uhash = 'user:'..result.id
   local user = redis:hgetall(uhash)
   local um_hash = 'msgs:'..result.id..':'..extra.chat2
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
-  text = text..'> تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'TeleAgent Team'
+  text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
+  text = text..'@Hextor Team'
   send_msg(extra.receiver, text, ok_cb,  true)
   else
   send_msg(extra.receiver, 'ایدی شخص مورد نظر در سیستم ثبت نشده است.\nاز دستور زیر استفاده کنید\n/info @username', ok_cb, false)
@@ -93,24 +95,25 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
 		if result.from.username then
 		   Username = '@'..result.from.username
 		   else
-		   Username = '> ندارد'
+		   Username = 'ندارد'
 		 end
-    local text = '> نام کامل : '..(result.from.first_name or '')..' '..(result.from.last_name or '')..'\n'
-               ..'> یوزر: '..Username..'\n'
-               ..'> ایدی کاربری : '..result.from.id..'\n\n'
-	 hash = 'rank:variables'
+    local text = 'نام کامل : '..(result.from.first_name or '')..' '..(result.from.last_name or '')..'\n'
+               ..'یوزر: '..Username..'\n'
+			   ..'شماره تلفن : +"..(msg.from.phone or '')\n'
+               ..'ایدی کاربری : '..result.from.id..'\n\n'
+	local hash = 'rank:variables'
 		local value = redis:hget(hash, result.from.id)
 		 if not value then
-		    if result.from.id == tonumber(Dev) then
-		       text = text..'> مقام : مدیر کل ربات (Executive Admin) \n\n'
+		    if result.from.id == tonumber(reza) then
+		       text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 		     elseif is_admin2(result.from.id) then
-		       text = text..'> مقام : ادمین ربات (Admin) \n\n'
+		       text = text..'مقام : ادمین ربات (Admin) \n\n'
 		     elseif is_owner2(result.from.id, result.to.id) then
-		       text = text..'> مقام : مدیر کل گروه (Owner) \n\n'
+		       text = text..'مقام : مدیر کل گروه (Owner) \n\n'
 		     elseif is_momod2(result.from.id, result.to.id) then
-		       text = text..'> مقام : مدیر گروه (Moderator) \n\n'
+		       text = text..'مقام : مدیر گروه (Moderator) \n\n'
 		 else
-		       text = text..'> مقام : کاربر (Member) \n\n'
+		       text = text..'مقام : کاربر (Member) \n\n'
 			end
 		  else
 		   text = text..'مقام : '..value..'\n\n'
@@ -121,7 +124,7 @@ local function action_by_reply(extra, success, result)-- (reply) /info  function
   local um_hash = 'msgs:'..result.from.id..':'..result.to.id
   user_info_msgs = tonumber(redis:get(um_hash) or 0)
   text = text..'تعداد پیام های فرستاده شده : '..user_info_msgs..'\n\n'
-  text = text..'TeleAgent Team'
+  text = text..'@Hextor Team'
   send_msg(extra.receiver, text, ok_cb, true)
 end
 
@@ -159,29 +162,29 @@ local function run(msg, matches)
   if msg.from.username then
    Username = '@'..msg.from.username
    else
-   Username = '> ندارد'
+   Username = 'ندارد'
    end
-   local text = '> نام : '..(msg.from.first_name or 'ندارد')..'\n'
-   local text = text..'> فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
-   local text = text..'> یوزر : '..Username..'\n'
-   local text = text..'> ایدی کاربری : '..msg.from.id..'\n\n'
-   local  hash = 'rank:variables'
+   local text = 'نام : '..(msg.from.first_name or 'ندارد')..'\n'
+   local text = text..'فامیل : '..(msg.from.last_name or 'ندارد')..'\n'	
+   local text = text..'یوزر : '..Username..'\n'
+   local text = text..'ایدی کاربری : '..msg.from.id..'\n\n'
+   local hash = 'rank:variables'
 	if hash then
 	  local value = redis:hget(hash, msg.from.id)
 	  if not value then
-		if msg.from.id == tonumber(Dev) then
-		 text = text..'> مقام : مدیر کل ربات (Executive Admin) \n\n'
+		if msg.from.id == tonumber(reza) then
+		 text = text..'مقام : مدیر کل ربات (Executive Admin) \n\n'
 		elseif is_sudo(msg) then
-		 text = text..'> مقام : ادمین ربات (Admin) \n\n'
+		 text = text..'مقام : ادمین ربات (Admin) \n\n'
 		elseif is_owner(msg) then
-		 text = text..'> مقام : مدیر کل گروه (Owner) \n\n'
+		 text = text..'مقام : مدیر کل گروه (Owner) \n\n'
 		elseif is_momod(msg) then
-		 text = text..'> مقام : مدیر گروه (Moderator) \n\n'
+		 text = text..'مقام : مدیر گروه (Moderator) \n\n'
 		else
-		 text = text..'> مقام : کاربر (Member) \n\n'
+		 text = text..'مقام : کاربر (Member) \n\n'
 		end
 	  else
-	   text = text..'> مقام : '..value..'\n'
+	   text = text..'مقام : '..value..'\n'
 	  end
 	end
     
@@ -194,7 +197,7 @@ local function run(msg, matches)
 	 text = text..'نام گروه : '..msg.to.title..'\n'
      text = text..'ایدی گروه : '..msg.to.id
     end
-	text = text..'\n\nTeleAgent Team'
+	text = text..'\n\n@TeleAgent_Team'
     return send_msg(receiver, text, ok_cb, true)
     end
   end
