@@ -390,33 +390,26 @@ function run(msg, matches)
 
     if matches[1] == 'sticker' then
       if matches[2] == 'warn' then
-          if is_momod(msg) then
         if welcome_stat ~= 'warn' then
           data[tostring(msg.to.id)]['settings']['sticker'] = 'warn'
           save_data(_config.moderation.data, data)
         end
-        
-        return 'فعال شد\nدر صورت ارسال استیکر،ابتدا اخطار داده شده\nدر صورت ارسال مجدد از گروه حذف خواهد شد'
+        return '[Alredy Enabled]\nSticker Sender will be warned first, then kicked for second Sticker.'
       end
-      end
-      if matches[2] == 'kick' then
-          if is_momod(msg) then
-        if welcome_stat ~= 'kick' then
-          data[tostring(msg.to.id)]['settings']['sticker'] = 'kick'
+      if matches[2] == 'yes' then
+        if welcome_stat ~= 'yes' then
+          data[tostring(msg.to.id)]['settings']['sticker'] = 'yes'
           save_data(_config.moderation.data, data)
         end
-        return 'فعال شد!\nدر صورت ارسال استیکر،فرد ارسال کننده حذف خواهد شد'
-      end
+        return '[Already Enabled]Sticker Sender will be kicked!'
       end
       if matches[2] == 'no' then
-          if is_momod(msg) then
         if welcome_stat == 'no' then
-          return 'قفل استیکر غیرفعال شد'
+          return '[Already Disabled]Nothing Will Happend If Sticker Sent!'
         else
           data[tostring(msg.to.id)]['settings']['sticker'] = 'no'
           save_data(_config.moderation.data, data)
-          return 'قفل استیکر غیر فعال میباشد '
-        end
+          return 'Nothing Will Happend If Sticker Sent! '
         end
       end
     end
@@ -483,15 +476,15 @@ function run(msg, matches)
         if is_sticker_offender then
           chat_del_user(receiver, 'user#id'..user_id, ok_cb, true)
           redis:del(sticker_hash)
-          return 'به دلیل ارسال استیکر از ادامه چت محروم میشوید'
+          return '[Warned Before]Kicked Because You Have Sent Stickers'
         elseif not is_sticker_offender then
           redis:set(sticker_hash, true)
-          return ' استیکر ارسال نکنید!\nاین یک اخطار میباشد\n\nدر صورت رعایت نکردن از گروه حذف خواهید شد'
+          return ' Stop Sending Sticker.This Is A Warn Next Time You Will Kicked!'
         end
-      elseif settings.sticker == 'kick' then
+      elseif settings.sticker == 'yes' then
         chat_del_user(receiver, 'user#id'..user_id, ok_cb, true)
-        return 'به دلیل استفاده از استیکر از گروه حذف میشوید'
-      elseif settings.sticker == 'ok' then
+        return 'You Kicked Because You Have Sent Stickers??'
+      elseif settings.sticker == 'no' then
         return nil
       end
     end
@@ -581,10 +574,4 @@ return {
 
 end
 
--- arman ino neveshte dg entezare bishtar azin nadashte bashid :|
-
---namosan hal nadaram baqiasho hazf konam :|
-
---hamino estefade konid okeye moshkeli nadare :|
-
---negarane speed plug ham nabashid chon pattern ha bastas,okeye ;)
+--To Have This Update Lua-tg-c avaiable on tg folder
