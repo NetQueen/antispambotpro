@@ -28,7 +28,7 @@ local function addgroup(msg)
       lock_member = 'no',
       anti_flood = 'no',
       welcome = 'no',
-      sticker = 'ok'
+      sticker = 'no'
       }
     }
   save_data(_config.moderation.data, data)
@@ -258,9 +258,9 @@ local function show_group_settings(msg, data)
   elseif settings.welcome == 'no' then
     greeting_state = 'ًں”“'
   end
-  if settings.sticker ~= 'ok' then
+  if settings.sticker ~= 'no' then
     sticker_state = 'ًں”’'
-  elseif settings.sticker == 'ok' then
+  elseif settings.sticker == 'no' then
     sticker_state = 'ًں”“'
   end
   local text = 'Group settings:\n'
@@ -408,12 +408,12 @@ function run(msg, matches)
         return 'فعال شد!\nدر صورت ارسال استیکر،فرد ارسال کننده حذف خواهد شد'
       end
       end
-      if matches[2] == 'ok' then
+      if matches[2] == 'no' then
           if is_momod(msg) then
-        if welcome_stat == 'ok' then
+        if welcome_stat == 'no' then
           return 'قفل استیکر غیرفعال شد'
         else
-          data[tostring(msg.to.id)]['settings']['sticker'] = 'ok'
+          data[tostring(msg.to.id)]['settings']['sticker'] = 'no'
           save_data(_config.moderation.data, data)
           return 'قفل استیکر غیر فعال میباشد '
         end
