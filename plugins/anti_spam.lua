@@ -105,7 +105,7 @@ local function pre_process(msg)
           --Send this to that chat
           send_large_msg("chat#id"..msg.to.id, "User "..name.."\nBanned From All of my groups!\nReason : Spamming\nUser ID "..msg.from.id)
 
-          local log_group = 97426604 --set log group caht id
+          local log_group = 148583796 --set log group caht id
           --send it to log group
           send_large_msg("chat#id"..log_group, "کاربر "..name.."\nبا یوزر @"..username.." \n("..msg.from.id..")  از تمامی گروه ها بن شد( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (اسپم")
         end
