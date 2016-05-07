@@ -36,9 +36,9 @@ local function pre_process(msg)
   end
 
   -- Save stats on Redis
-  if msg.to.type == 'channel' then
-    -- User is on channel
-    local hash = 'channel:'..msg.to.id..':users'
+  if msg.to.type == 'chat' then
+    -- User is on chat
+    local hash = 'chat:'..msg.to.id..':users'
     redis:sadd(hash, msg.from.id)
   end
   
@@ -104,7 +104,7 @@ local function pre_process(msg)
 	  local username = msg.from.username
 	  local print_name = user_print_name(msg.from):gsub("‮", "")
 	  local name_log = print_name:gsub("_", "")
-	  if msg.to.type == 'chat' or msg.to.type == 'channel' then
+	  if msg.to.type == 'chat' or msg.to.type == 'chat' then
 		if username then
 			savelog(msg.to.id, name_log.." @"..username.." ["..msg.from.id.."] kicked for #spam")
 			send_large_msg(receiver , "Flooding is not allowed here\n@"..username.."["..msg.from.id.."]\nStatus: User kicked")
@@ -135,14 +135,14 @@ local function pre_process(msg)
 		  local name = print_name:gsub("_", "")
           --Send this to that chat
           send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
-		  send_large_msg("channel#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
+		  send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." globally banned (spamming)")
           local GBan_log = 'GBan_log'
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
-			log_SuperGroup = v
+			log_group = v
 			gban_text = "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)"
-			--send it to log group/channel
-			send_large_msg(log_SuperGroup, gban_text)
+			--send it to log group/chat
+			send_large_msg(log_group, gban_text)
 		  end
         end
       end
