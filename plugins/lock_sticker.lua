@@ -387,7 +387,6 @@ function run(msg, matches)
         return show_group_settings(msg, data)
 		  end
     end
-
     if matches[1] == 'sticker' then
       if matches[2] == 'warn' then
         if welcome_stat ~= 'warn' then
@@ -484,7 +483,7 @@ function run(msg, matches)
       elseif settings.sticker == 'yes' then
         chat_del_user(receiver, 'user#id'..user_id, ok_cb, true)
         return 'You Kicked Because You Have Sent Stickers??'
-      elseif settings.sticker == 'no' then
+      elseif settings.sticker == 'ok' then
         return nil
       end
     end
@@ -538,8 +537,8 @@ return {
       '!setphoto : Set group photo.',
       '!setrules <rules> : Set group rules.',
       '!sticker warn : Sticker restriction, sender will be warned for the first violation.',
-      '!sticker kick : Sticker restriction, sender will be kick.',
-      '!sticker ok : Disable sticker restriction.'
+      '!sticker yes : Sticker restriction, sender will be kick.',
+      '!sticker no : Disable sticker restriction.'
     },
     user = {
       '!about : Read group description',
