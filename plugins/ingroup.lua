@@ -18,10 +18,11 @@ local function check_member_autorealm(cb_extra, success, result)
           lock_member = 'no',
           flood = 'yes',
 		  lock_link = 'yes',
-		  sticker = 'ok',
+		  sticker = 'no',
 		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
+		  lock_sticker = 'no',
 		  lock_badw = 'no',
 		  lock_english = 'no',
 		  lock_join = 'no',
@@ -59,10 +60,11 @@ local function check_member_realm_add(cb_extra, success, result)
           lock_member = 'no',
           flood = 'yes',
 		  lock_link = 'yes',
-		  sticker = 'ok',
+		  sticker = 'no',
 		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
+		  lock_sticker = 'no',
 		  lock_badw = 'no',
 		  lock_english = 'no',
 		  lock_join = 'no',
@@ -102,10 +104,11 @@ function check_member_group(cb_extra, success, result)
           lock_member = 'no',
           flood = 'yes',
 		  lock_link = 'yes',
-		  sticker = 'ok',
+		  sticker = 'no',
 		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
+		  lock_sticker = 'no',
 		  lock_badw = 'no',
 		  lock_english = 'no',
 		  lock_join = 'no',
@@ -145,10 +148,11 @@ local function check_member_modadd(cb_extra, success, result)
           lock_member = 'no',
           flood = 'yes',
 		  lock_link = 'yes',
-		  sticker = 'ok',
+		  sticker = 'no',
 		  version = '3.0',
 		  groupmodel = 'normal',
 		  tag = 'no',
+		  lock_sticker = 'no',
 		  lock_badw = 'no',
 		  lock_english = 'no',
 		  lock_join = 'no',
@@ -259,10 +263,14 @@ local function show_group_settingsmod(msg, data, target)
     if data[tostring(msg.to.id)]['settings']['groupmodel'] then
     	groupmodel = data[tostring(msg.to.id)]['settings']['groupmodel']
    	end
-    local sticker = "ok"
+    local sticker = "no"
     if data[tostring(msg.to.id)]['settings']['sticker'] then
     	sticker = data[tostring(msg.to.id)]['settings']['sticker']
    	end
+	local lock_sticker = "no"
+    if data[tostring(msg.to.id)]['settings']['sticker'] then
+        lock_sticker = data[tostring(msg.to.id)]['settings']['sticker']
+        end
     local tag = "no"
     if data[tostring(msg.to.id)]['settings']['tag'] then
     	tag = data[tostring(msg.to.id)]['settings']['tag']
@@ -292,7 +300,7 @@ local function show_group_settingsmod(msg, data, target)
     	welcome = data[tostring(msg.to.id)]['settings']['welcome']
    	end
   local settings = data[tostring(target)]['settings']
-  local text = "تنظیمات کلی:\n______________________________\n🔸 قفل نام گروه : "..settings.lock_name.."\n🔹 قفل عکس گروه : "..settings.lock_photo.."\n🔸 حساسیت اسپم : "..NUM_MSG_MAX.."\n🔹 قفل ربات ها : "..bots_protection.."\n🔸 قفل ورود : "..lock_join.."\n🔹 قفل خروج : "..leave_ban.."\n\nتنظیمات مدیریتی:\n⭕️قفل رسانه : "..lock_media.."\n⭕️ قفل اشتراک گذاری : "..lock_share.."\n⭕️ممنوعیت ارسال لینک : "..lock_link.."\n⭕️ خوش امد : "..welcome.."\n⭕️ قفل تگ : "..tag.."\n⭕️ قفل اینگلیسی :"..lock_english.."\n⭕️ قفل فحش : "..lock_badw.."\n\nمشخصات گروه: ℹ️\n👥 مدل گروه : "..groupmodel.."\n🔢 ورژن : "..version.."\n______________________________\n</TeleAgent Team>"
+  local text = "تنظیمات کلی:\n______________________________\n>  قفل نام گروه : "..settings.lock_name.."\n>  قفل عکس گروه : "..settings.lock_photo.."\n>  حساسیت اسپم : "..NUM_MSG_MAX.."\n>  قفل ربات ها : "..bots_protection.."\n>  قفل ورود : "..lock_join.."\n>  قفل خروج : "..leave_ban.."\n\nتنظیمات مدیریتی:\n> قفل رسانه : "..lock_media.."\n>  قفل استیکر : "..lock_sticker.."\n>  قفل اشتراک گذاری : "..lock_share.."\n> ممنوعیت ارسال لینک : "..lock_link.."\n>  خوش امد : "..welcome.."\n>  قفل تگ : "..tag.."\n>  قفل اینگلیسی :"..lock_english.."\n>  قفل فحش : "..lock_badw.."\n\nمشخصات گروه: \n>  مدل گروه : "..groupmodel.."\n>  ورژن : "..version.."\n______________________________\n<TeleAgent Settings> (͡° ͜ʖ ͡°)"
   return text
 end
 
@@ -325,6 +333,34 @@ local function lock_group_join(msg, data, target)
     data[tostring(target)]['settings']['lock_join'] = 'yes'
     save_data(_config.moderation.data, data)
     return 'ورود قفل شد'
+  end
+end
+
+local function lock_group_sticker(msg, data, target)
+  if not is_momod(msg) then
+    return "فقط مدیران"
+  end
+  local group_sticker_lock = data[tostring(target)]['settings']['sticker']
+  if group_sticker_lock == 'yes' then
+    return 'ارسال استیکر از قبل قفل بود'
+  else
+    data[tostring(target)]['settings']['sticker'] = 'yes'
+    save_data(_config.moderation.data, data)
+    return 'ارسال استیکر قفل شد'
+  end
+end
+
+local function unlock_group_sticker(msg, data, target)
+  if not is_momod(msg) then
+    return "فقط مدیران"
+  end
+  local group_sticker_lock = data[tostring(target)]['settings']['sticker']
+  if group_sticker_lock == 'no' then
+    return 'ارسال استیکر از قبل آزاد بود'
+  else
+    data[tostring(target)]['settings']['sticker'] = 'no'
+    save_data(_config.moderation.data, data)
+    return 'ارسال استیکر باز شد'
   end
 end
 
@@ -545,7 +581,7 @@ local function lock_group_floodmod(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'ارسال پیام سریع ممنوع از قبل ممنوع بود'
+    return 'ارسال اسپم از قبل قفل بود'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
@@ -1237,6 +1273,10 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked name ")
         return lock_group_namemod(msg, data, target)
       end
+	if matches[2] == 'استیکر' or matches[2] == 'sticker' then
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked sticker ")
+        return lock_group_sticker(msg, data, target)
+      end
       if matches[2] == 'اعضا' or matches[2] == 'member' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] locked member ")
         return lock_group_membermod(msg, data, target)
@@ -1287,6 +1327,10 @@ local function run(msg, matches)
       if matches[2] == 'نام' or matches[2] == 'name' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked name ")
         return unlock_group_namemod(msg, data, target)
+      end
+	if matches[2] == 'استیکر' or matches[2] == 'sticker' then
+       savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked sticker ")
+       return unlock_group_sticker(msg, data, target)
       end
       if matches[2] == 'اعضا' or matches[2] == 'member' then
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] unlocked member ")
