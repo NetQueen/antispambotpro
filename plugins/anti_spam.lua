@@ -91,7 +91,7 @@ local function pre_process(msg)
       local gbanspamonredis = redis:get(gbanspam)
       --Check if user has spammed is group more than 4 times  
       if gbanspamonredis then
-        if tonumber(gbanspamonredis) ==  4 and not is_owner(msg) then
+        if tonumber(gbanspamonredis) ==  6 and not is_owner(msg) then
           --Global ban that user
           banall_user(msg.from.id)
           local gbanspam = 'gban:spam'..msg.from.id
@@ -103,10 +103,11 @@ local function pre_process(msg)
           end
           local name = user_print_name(msg.from)
           --Send this to that chat
-          send_large_msg("chat#id"..msg.to.id, "User [ "..name.." ]"..msg.from.id.." Globally banned (spamming)")
-          local log_group = 1 --set log group caht id
+          send_large_msg("chat#id"..msg.to.id, "User "..name.."\nBanned From All of my groups!\nReason : Spamming\nUser ID "..msg.from.id)
+
+          local log_group = 97426604 --set log group caht id
           --send it to log group
-          send_large_msg("chat#id"..log_group, "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)")
+          send_large_msg("chat#id"..log_group, "کاربر "..name.."\nبا یوزر @"..username.." \n("..msg.from.id..")  از تمامی گروه ها بن شد( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (اسپم")
         end
       end
       kicktable[user] = true
@@ -129,3 +130,38 @@ return {
 }
 
 end
+
+
+
+
+--  -_-_-_-_-_-_-_-_-_-   ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||             ||-_-_-_-_-_
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||             ||             ||
+--           ||           ||-_-_-_-_-_   ||-_-_-_-_-_   ||-_-_-_-_-_
+--
+--
+--                               /\                              /\             /-_-_-_-_-_    ||-_-_-_-_-_   ||-_-_-_-_-_
+--  ||\\            //||        //\\        ||      //||        //\\           //              ||             ||         //
+--  || \\          // ||       //  \\       ||     // ||       //  \\         //               ||             ||       //
+--  ||  \\        //  ||      //    \\      ||    //  ||      //    \\       ||                ||             ||    //
+--  ||   \\      //   ||     //______\\     ||   //   ||     //______\\      ||      -_-_-_-   ||-_-_-_-_-_   || //
+--  ||    \\    //    ||    //        \\    ||  //    ||    //        \\     ||           ||   ||             ||  \\ 
+--  ||     \\  //     ||   //          \\   || //     ||   //          \\     \\          ||   ||             ||     \\
+--  ||      \\//      ||  //            \\  ||//      ||  //            \\     \\-_-_-_-_-||   ||-_-_-_-_-_   ||        \\
+--
+--
+--  ||-_-_-_-    ||           ||           ||               //-_-_-_-_-_-
+--  ||     ||    ||           ||           ||              //
+--  ||_-_-_||    ||           ||           ||             //
+--  ||           ||           ||           ||             \\
+--  ||           ||           \\           //              \\
+--  ||           ||            \\         //               //
+--  ||           ||-_-_-_-_     \\-_-_-_-//    -_-_-_-_-_-//
+--
+--By @ali_ghoghnoos
+--@telemanager_ch
