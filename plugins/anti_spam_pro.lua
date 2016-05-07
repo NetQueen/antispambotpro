@@ -139,9 +139,9 @@ local function pre_process(msg)
           local GBan_log = 'GBan_log'
 		  local GBan_log =  data[tostring(GBan_log)]
 		  for k,v in pairs(GBan_log) do
-			log_group = v
+			log_SuperGroup = v
 			gban_text = "User [ "..name.." ] ( @"..username.." )"..msg.from.id.." Globally banned from ( "..msg.to.print_name.." ) [ "..msg.to.id.." ] (spamming)"
-			--send it to log group/chat
+			--send it to log group/channel
 			send_large_msg(log_group, gban_text)
 		  end
         end
