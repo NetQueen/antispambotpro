@@ -199,7 +199,6 @@ local function callback_res(extra, success, result)
 	else
 		userrank = "Member"
 	end
-	end
 	--custom rank ------------------------------------------------------------------------------------------------
 	local file = io.open("./info/"..result.id..".txt", "r")
 	if file ~= nil then
@@ -297,7 +296,6 @@ local function callback_info(extra, success, result)
 		send_document(org_chat_id,"./icons/5.webp", ok_cb, false)
 	else
 		userrank = "Member"
-	end
 	end
 	--custom rank ------------------------------------------------------------------------------------------------
 	local file = io.open("./info/"..result.id..".txt", "r")
