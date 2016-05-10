@@ -12,7 +12,8 @@ dont forget to visit our channel : @TeleAgent_Team
 
 Our Team: 👥
 @XHACKERX
-@Teleagent1
+@AryanAvast
+@AttackerTeleAgent
 @SiIencer
 @aidin009
 @CLieNT
