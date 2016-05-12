@@ -280,11 +280,11 @@ function create_config( )
     "lea",
     "voice"
     },
-    sudo_users = {195801672},--Sudo users
+    sudo_users = {21843285},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
-    about_text = [[ TeleAgent bot 
-    Admin: @XHACKERX ]],
+    about_text = [[ NetQueen bot 
+    Admin: @XSUDOX ]],
     help_text_realm = [[
 See Patterns In Github
 ]],
